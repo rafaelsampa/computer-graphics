@@ -12,13 +12,20 @@
 - Criatividade e apresentação visual: **10%**
 - **BONUS**: Interatividade, reflexão, hierarquia: **+10%**
 
+## O que ter em mente?
+- Translate.
+- Rotate.
+- Scale.
+- Composição.
+- Ponto Fixo.
+- Animação com reset de matriz.
+- save/restore em cada  objeto.
+- **BONUS**: teclado, hierarquia, reflexão. 
+
 ## Entrega
 - Arquivos: **index.html** + qualquer **js/css** auxiliar.
 - Deve funcionar abrindo o index.html no navegador.
 - Incluir o README.md explicando: Tema escolhido, quais transformações usaram e onde.
 - Entregar via git ou arquivo .zip
 
-
-
-RTOS real time operational siystem
 
