@@ -1,5 +1,10 @@
 # Computação Gráfica
 
+Um repositório para prática de transformações geométricas. 
+
+## Tema
+
+A ser definido.
 
 
 
