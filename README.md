@@ -23,7 +23,7 @@ Para facilitar a avaliação, detalhamos abaixo onde cada transformação exigid
 * **7. Gerenciamento de pilha:** Uso de `ctx.save()` e `ctx.restore()` em cada objeto desenhado para isolar os estados e não afetar o restante da cena.
 
 ## Requisitos Bônus Implementados
-*(Preencha os tópicos abaixo com o que o grupo conseguir desenvolver)*
+<!---*(Preencha os tópicos abaixo com o que o grupo conseguir desenvolver)*--->
 * **Interatividade:** [Ex: O teclado controla a posição do objeto principal]
 * **Hierarquia de transformações:** [Ex: O objeto Y é desenhado como filho do objeto X]
 * **Reflexão ou cisalhamento:** [Ex: Aplicado no objeto Z usando escala negativa]
