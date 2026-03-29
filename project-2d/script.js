@@ -9,6 +9,7 @@ const H = canvas.height;
 // (ângulos, posições, escalas, velocidades, etc.)
 // =============================================================
 let angulo = 0;
+let dist = 0;
 let posX = W / 2;
 let posY = H / 2;
 
@@ -56,6 +57,7 @@ function animar() {
 
   // --- ATUALIZAR ESTADO ---
   angulo += 0.02;
+  dist += 0.5;
 
   // =============================================================
   // DESENHAR A CENA
@@ -66,7 +68,7 @@ function animar() {
   // Exemplo: quadrado no centro, girando
   ctx.save();
     ctx.translate(posX, posY);       // posiciona no centro
-    ctx.rotate(angulo);              // gira ao redor do centro
+    ctx.translate(dist, 0);          // distância do centro
     Carro1('#FFEA17', 'gray');
   ctx.restore();
 
