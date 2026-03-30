@@ -41,41 +41,41 @@ function desenhaMapa() {
   // Asfalto
   ctx.beginPath();
   ctx.strokeStyle = '#999999';
-  ctx.lineWidth = 50;
+  ctx.lineWidth = 100;
   
   // Rua Horizontal
-  ctx.moveTo(-W, H/2); 
-  ctx.lineTo(W, H/2);
+  ctx.moveTo(-W, H/4); 
+  ctx.lineTo(W, H/4);
   // Rua Vertical (centralizado)
-  ctx.moveTo(W/2, -H); 
-  ctx.lineTo(W/2, H);
+  ctx.moveTo(W*(3/4), -H); 
+  ctx.lineTo(W*(3/4), H);
 
   ctx.stroke();
 
-  // Faixas de sinalização
+  // Faixas de sinalização (Horz -> Vert)
   ctx.beginPath();
   ctx.strokeStyle = '#fff200';
   ctx.lineWidth = 2.5;
   //Faixa da Direita 1
-  ctx.moveTo(-W, (H/2) + 2.5); 
-  ctx.lineTo((W/2) - 25, (H/2) + 2.5);
-  ctx.moveTo((W/2) + 2.5, -H); 
-  ctx.lineTo((W/2) + 2.5, (H/2) - 25);
+  ctx.moveTo(0, H/4 + 2.5); 
+  ctx.lineTo(W*(3/4) - 50, (H/4) + 2.5);
+  ctx.moveTo(W*(3/4) + 2.5, 0); 
+  ctx.lineTo(W*(3/4) + 2.5, (H/4) - 50);
   //Faixa da Direita 2
-  ctx.moveTo((W/2) + 25, (H/2) + 2.5); 
-  ctx.lineTo(W, (H/2) + 2.5);
-  ctx.moveTo((W/2) + 2.5, (H/2) + 25); 
-  ctx.lineTo((W/2) + 2.5, H);
+  ctx.moveTo(W*(3/4) + 50, (H/4) + 2.5); 
+  ctx.lineTo(W, (H/4) + 2.5);
+  ctx.moveTo(W*(3/4) + 2.5, (H/4) + 50); 
+  ctx.lineTo(W*(3/4) + 2.5, H);
   //Faixa da Esquerda 1
-  ctx.moveTo(-W, (H/2) - 2.5); 
-  ctx.lineTo((W/2) - 25, (H/2) - 2.5);
-  ctx.moveTo((W/2) - 2.5, -H); 
-  ctx.lineTo((W/2) - 2.5, (H/2) - 25);
+  ctx.moveTo(0, (H/4) - 2.5); 
+  ctx.lineTo(W*(3/4) - 50, (H/4) - 2.5);
+  ctx.moveTo(W*(3/4) - 2.5, 0); 
+  ctx.lineTo(W*(3/4) - 2.5, (H/4) - 50);
   //Faixa da Esquerda 2
-  ctx.moveTo((W/2) + 25, (H/2) - 2.5); 
-  ctx.lineTo(W, (H/2) - 2.5);
-  ctx.moveTo((W/2) - 2.5, (H/2) + 25); 
-  ctx.lineTo((W/2) - 2.5, H);
+  ctx.moveTo(W*(3/4) + 50, (H/4) - 2.5); 
+  ctx.lineTo(W, (H/4) - 2.5);
+  ctx.moveTo(W*(3/4) - 2.5, (H/4) + 50); 
+  ctx.lineTo(W*(3/4) - 2.5, H);
   
   ctx.stroke();
 }
@@ -114,7 +114,7 @@ function animar() {
   ctx.restore();
 
   ctx.save(); // Movimentação do Carro 01
-    ctx.translate(posX, posY);
+    ctx.translate(0, posY - (H/4) - 25);
     if (foward && !turn180) {
       if (dist <= -100){
         dist += 4.5;
@@ -122,7 +122,7 @@ function animar() {
       else{
         dist += 2.5;
       }
-      if (dist > W / 2) {
+      if (dist > W) {
         foward = false;
       }
     } else {
@@ -133,7 +133,7 @@ function animar() {
         dist -= 2.5;
       }
       turn180 = true;
-      if (dist < -(W / 2)){
+      if (dist < 0){
         foward = true;
         turn180 = false;
       }
@@ -145,42 +145,9 @@ function animar() {
     Carro1('#FFEA17', '#595959');
   ctx.restore();
 
-  // Exemplo: triângulo orbitando o quadrado
-  ctx.save();
-    ctx.translate(posX, posY);       // vai pro centro
-    ctx.rotate(angulo * 2);          // orbita mais rápido
-    ctx.translate(150, 0);           // afasta do centro
-    ctx.scale(0.8, 0.8);            // um pouco menor
-    desenhaTriangulo(40, 50, '#FA86C4');
-  ctx.restore();
-
-  // Exemplo: escala com ponto fixo (canto superior esquerdo)
-  ctx.save();
-    var px = 100, py = 100;
-    ctx.translate(px, py);           // volta
-    
-    ctx.translate(-px, -py);         // leva à origem
-    ctx.fillStyle = '#86FAFA';
-    ctx.fillRect(70, 70, 60, 60);
-    ctx.strokeRect(70, 70, 60, 60);
-  ctx.restore();
-
   // --- PRÓXIMO FRAME ---
   requestAnimationFrame(animar);
 }
-
-// =============================================================
-// INTERATIVIDADE (BÔNUS)
-// Adicione controles de teclado ou mouse se quiser.
-// =============================================================
-document.addEventListener('keydown', function(e) {
-  switch (e.key) {
-    case 'ArrowLeft':  posX -= 10; break;
-    case 'ArrowRight': posX += 10; break;
-    case 'ArrowUp':    posY -= 10; break;
-    case 'ArrowDown':  posY += 10; break;
-  }
-});
 
 // Inicia a animação
 animar();
