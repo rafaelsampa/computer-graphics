@@ -69,7 +69,7 @@ function desenhaMapa() {
   //Faixa Inferior da Rua Direita (Horizontal)
   ctx.moveTo(W*(3/4) + 50, (H/4) + 2.5); 
   ctx.lineTo(W, (H/4) + 2.5);
-    //Faixa Esquerda da Rua de Cima (Vertical)
+  //Faixa Esquerda da Rua de Cima (Vertical)
   ctx.moveTo(W*(3/4) - 2.5, 0); 
   ctx.lineTo(W*(3/4) - 2.5, (H/4) - 50);
   //Faixa Direita da Rua de Cima (Vertical)
