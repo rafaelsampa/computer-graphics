@@ -12,6 +12,11 @@ let angulo = 0;
 let dist = 0;
 let posX = W / 2;
 let posY = H / 2;
+let carHeight = 0;
+let foward = true;
+let turn180 = false;
+let turnleft;
+let turnright;
 
 // =============================================================
 // FUNÇÕES DE DESENHO
@@ -57,8 +62,6 @@ function animar() {
 
   // --- ATUALIZAR ESTADO ---
   angulo += 0.02;
-  dist += 0.5;
-
   // =============================================================
   // DESENHAR A CENA
   // Use ctx.save() e ctx.restore() para isolar as transformações
@@ -68,8 +71,34 @@ function animar() {
   // Exemplo: quadrado no centro, girando
   ctx.save();
     ctx.translate(posX, posY);       // posiciona no centro
-    ctx.translate(dist, 0);          // distância do centro
-    Carro1('#FFEA17', 'gray');
+    if (foward && !turn180) {
+      if (dist <= -100){
+        dist += 4.5;
+      }
+      else{
+        dist += 2.5;
+      }
+      if (dist > W / 2) {
+        foward = false;
+      }
+    } else {
+      if (dist <= -100){
+        dist -= 1.5;
+      }
+      else{
+        dist -= 2.5;
+      }
+      turn180 = true;
+      if (dist < -(W / 2)){
+        foward = true;
+        turn180 = false;
+      }
+    }
+    ctx.translate(dist, 0); 
+    if (turn180){
+      ctx.rotate(Math.PI);
+    }
+    Carro1('#FFEA17', '#595959');
   ctx.restore();
 
   // Exemplo: triângulo orbitando o quadrado
@@ -78,16 +107,16 @@ function animar() {
     ctx.rotate(angulo * 2);          // orbita mais rápido
     ctx.translate(150, 0);           // afasta do centro
     ctx.scale(0.8, 0.8);            // um pouco menor
-    desenhaTriangulo(40, 50, 'pink');
+    desenhaTriangulo(40, 50, '#FA86C4');
   ctx.restore();
 
   // Exemplo: escala com ponto fixo (canto superior esquerdo)
   ctx.save();
     var px = 100, py = 100;
     ctx.translate(px, py);           // volta
-    ctx.scale(1 + 0.3 * Math.sin(angulo), 1 + 0.3 * Math.sin(angulo));
+    
     ctx.translate(-px, -py);         // leva à origem
-    ctx.fillStyle = 'cyan';
+    ctx.fillStyle = '#86FAFA';
     ctx.fillRect(70, 70, 60, 60);
     ctx.strokeRect(70, 70, 60, 60);
   ctx.restore();
