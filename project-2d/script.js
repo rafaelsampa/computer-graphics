@@ -20,9 +20,6 @@ let turnright;
 
 // =============================================================
 // FUNÇÕES DE DESENHO
-// Crie funções para cada objeto da sua cena.
-// Desenhe sempre ao redor da ORIGEM (0,0) e use transformações
-// para posicionar, rotacionar e escalar.
 // =============================================================
 
 function Carro1(corCarro, corRoda) {
@@ -40,6 +37,49 @@ function Carro1(corCarro, corRoda) {
   //(pos X, pos Y, Gordura, Tamanho)
 }
 
+function desenhaMapa() {
+  // Asfalto
+  ctx.beginPath();
+  ctx.strokeStyle = '#999999';
+  ctx.lineWidth = 50;
+  
+  // Rua Horizontal
+  ctx.moveTo(-W, H/2); 
+  ctx.lineTo(W, H/2);
+  // Rua Vertical (centralizado)
+  ctx.moveTo(W/2, -H); 
+  ctx.lineTo(W/2, H);
+
+  ctx.stroke();
+
+  // Faixas de sinalização
+  ctx.beginPath();
+  ctx.strokeStyle = '#fff200';
+  ctx.lineWidth = 2.5;
+  //Faixa da Direita 1
+  ctx.moveTo(-W, (H/2) + 2.5); 
+  ctx.lineTo((W/2) - 25, (H/2) + 2.5);
+  ctx.moveTo((W/2) + 2.5, -H); 
+  ctx.lineTo((W/2) + 2.5, (H/2) - 25);
+  //Faixa da Direita 2
+  ctx.moveTo((W/2) + 25, (H/2) + 2.5); 
+  ctx.lineTo(W, (H/2) + 2.5);
+  ctx.moveTo((W/2) + 2.5, (H/2) + 25); 
+  ctx.lineTo((W/2) + 2.5, H);
+  //Faixa da Esquerda 1
+  ctx.moveTo(-W, (H/2) - 2.5); 
+  ctx.lineTo((W/2) - 25, (H/2) - 2.5);
+  ctx.moveTo((W/2) - 2.5, -H); 
+  ctx.lineTo((W/2) - 2.5, (H/2) - 25);
+  //Faixa da Esquerda 2
+  ctx.moveTo((W/2) + 25, (H/2) - 2.5); 
+  ctx.lineTo(W, (H/2) - 2.5);
+  ctx.moveTo((W/2) - 2.5, (H/2) + 25); 
+  ctx.lineTo((W/2) - 2.5, H);
+  
+  ctx.stroke();
+}
+
 function desenhaTriangulo(base, altura, cor) {
   ctx.fillStyle = cor;
   ctx.beginPath();
@@ -55,10 +95,12 @@ function desenhaTriangulo(base, altura, cor) {
 // LOOP DE ANIMAÇÃO
 // Esta função é chamada a cada frame (~60x por segundo).
 // =============================================================
+
 function animar() {
   // --- RESET da matriz (obrigatório a cada frame!) ---
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, W, H);
+  
 
   // --- ATUALIZAR ESTADO ---
   angulo += 0.02;
@@ -67,10 +109,12 @@ function animar() {
   // Use ctx.save() e ctx.restore() para isolar as transformações
   // de cada objeto.
   // =============================================================
+  ctx.save(); //Background da Animação
+    desenhaMapa();
+  ctx.restore();
 
-  // Exemplo: quadrado no centro, girando
-  ctx.save();
-    ctx.translate(posX, posY);       // posiciona no centro
+  ctx.save(); // Movimentação do Carro 01
+    ctx.translate(posX, posY);
     if (foward && !turn180) {
       if (dist <= -100){
         dist += 4.5;
