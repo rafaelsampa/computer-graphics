@@ -4,6 +4,8 @@ const ctx = canvas.getContext('2d');
 const W = canvas.width;
 const H = canvas.height;
 
+const img = new Image();
+img.src = "assets/Rosa_Ventos.png";
 
 // =============================================================
 // VARIÁVEIS DE ESTADO 
@@ -27,6 +29,11 @@ let driftX = W/4;
 let driftY = H*(3/4);
 let anguloDrift = 0;
 let raioDrift = 100;
+
+// Bussola 
+let busPosX = W - 125;
+let busPosY = H - 125;
+let busAngulo = 0;
 
 
 // =============================================================
@@ -176,6 +183,16 @@ function animar() {
       ctx.rotate(carroAngulo);
       criarCarro('#FFEA17', '#595959');
     ctx.restore();
+
+    ctx.save();
+      var px = busPosX; py = busPosY;  
+      ctx.translate(px, py);
+      ctx.scale(1 + 0.3 * Math.sin(busAngulo), 1 + 0.3 * Math.sin(busAngulo));
+      ctx.translate(-px, -py);
+      busAngulo += 0.02;
+      ctx.drawImage(img, busPosX, busPosY, 85, 85);
+    ctx.restore();
+
     
 
     // 4. Pede ao navegador para chamar essa função no próximo frame
