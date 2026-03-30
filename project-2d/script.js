@@ -52,30 +52,35 @@ function desenhaMapa() {
 
   ctx.stroke();
 
-  // Faixas de sinalização (Horz -> Vert)
+  // Faixas de sinalização
   ctx.beginPath();
   ctx.strokeStyle = '#fff200';
   ctx.lineWidth = 2.5;
-  //Faixa da Direita 1
-  ctx.moveTo(0, H/4 + 2.5); 
-  ctx.lineTo(W*(3/4) - 50, (H/4) + 2.5);
-  ctx.moveTo(W*(3/4) + 2.5, 0); 
-  ctx.lineTo(W*(3/4) + 2.5, (H/4) - 50);
-  //Faixa da Direita 2
-  ctx.moveTo(W*(3/4) + 50, (H/4) + 2.5); 
-  ctx.lineTo(W, (H/4) + 2.5);
-  ctx.moveTo(W*(3/4) + 2.5, (H/4) + 50); 
-  ctx.lineTo(W*(3/4) + 2.5, H);
-  //Faixa da Esquerda 1
+
+  //Faixa Superior da Rua Esquerda (Horizontal)
   ctx.moveTo(0, (H/4) - 2.5); 
   ctx.lineTo(W*(3/4) - 50, (H/4) - 2.5);
+  //Faixa Inferior da Rua Esquerda (Horizontal)
+  ctx.moveTo(0, H/4 + 2.5); 
+  ctx.lineTo(W*(3/4) - 50, (H/4) + 2.5);
+  //Faixa Esquerda da Rua de Cima (Vertical)
   ctx.moveTo(W*(3/4) - 2.5, 0); 
   ctx.lineTo(W*(3/4) - 2.5, (H/4) - 50);
-  //Faixa da Esquerda 2
+  //Faixa Direita da Rua de Cima (Vertical)
+  ctx.moveTo(W*(3/4) + 2.5, 0); 
+  ctx.lineTo(W*(3/4) + 2.5, (H/4) - 50);
+  //Faixa Superior da Rua Direita (Horizontal)
   ctx.moveTo(W*(3/4) + 50, (H/4) - 2.5); 
   ctx.lineTo(W, (H/4) - 2.5);
+  //Faixa Inferior da Rua Direita (Horizontal)
+  ctx.moveTo(W*(3/4) + 50, (H/4) + 2.5); 
+  ctx.lineTo(W, (H/4) + 2.5);
+  //Faixa Esquerda da Rua de Baixo (Vertical)
   ctx.moveTo(W*(3/4) - 2.5, (H/4) + 50); 
   ctx.lineTo(W*(3/4) - 2.5, H);
+  //Faixa Direita da Rua de Baixo (Vertical)
+  ctx.moveTo(W*(3/4) + 2.5, (H/4) + 50); 
+  ctx.lineTo(W*(3/4) + 2.5, H);
   
   ctx.stroke();
 }
