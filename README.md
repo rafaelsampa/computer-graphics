@@ -3,7 +3,7 @@
 Um repositório para prática de transformações geométricas em Canvas 2D.
 
 ## Informações Gerais
-* **Alunos:** Rafael, 
+* **Alunos:** Rafael Sampaio, Lucas Mourato, David Candido
 * **Prazo:** 31 de março
 * **Tecnologia:** JavaScript + HTML + Canvas 2D
 
